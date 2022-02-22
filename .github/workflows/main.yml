@@ -1,0 +1,46 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+  workflow_dispatch:
+
+jobs:
+  lint:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v2
+
+      - name: Lint Ansible Playbook
+        uses: ansible/ansible-lint-action@master
+        with:
+          targets: main.yml
+          override-deps: |
+            ansible-lint==5.3.2
+
+  deploy:
+    environment: Azure
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ensure Ansible is installed
+        run: ansible --version
+
+      - name: Check out the repository
+        uses: actions/checkout@v2
+
+      - name: Instantiate Ansible 'hosts' file
+        run: sudo install -D hosts /etc/ansible/hosts
+
+      - name: Run Ansible playbook
+        run: ansible-playbook main.yml
+        env:
+          AZURE_CLIENT_ID: ${{ secrets.CLIENT_ID }}
+          AZURE_SECRET: ${{ secrets.CLIENT_SECRET }}
+          AZURE_SUBSCRIPTION_ID: ${{ secrets.SUBSCRIPTION_ID }}
+          AZURE_TENANT: ${{ secrets.TENANT_ID }}
+
