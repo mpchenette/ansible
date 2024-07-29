@@ -16,13 +16,16 @@ jobs:
       - name: Ensure Ansible is installed
         run: ansible --version
 
+      - name: Check installed Collections
+        run: ansible-galaxy collection list
+
       - name: check out the repository
         uses: actions/checkout@v4
 
       - name: lint Ansible Playbook
         uses: ansible/ansible-lint@v24
         with:
-          path: "./main.yml"
+          working_directory: "."
 
   deploy:
     environment: Azure
