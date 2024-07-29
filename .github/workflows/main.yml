@@ -18,6 +18,8 @@ jobs:
 
       - name: lint Ansible Playbook
         uses: ansible/ansible-lint@v24
+        with:
+          targets: main.yml
 
   deploy:
     environment: Azure
