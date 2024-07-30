@@ -26,6 +26,7 @@ jobs:
         uses: ansible/ansible-lint@v24
         with:
           working_directory: "."
+          args: "--exclude ./github/"
 
   deploy:
     environment: Azure
