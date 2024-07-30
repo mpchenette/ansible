@@ -1,0 +1,6 @@
+- name: Debug playbook
+  hosts: localhost
+  tasks:
+    - name: Ensure the message is echoed
+      ansible.builtin.debug:
+        msg: "Hello, Ansible!"

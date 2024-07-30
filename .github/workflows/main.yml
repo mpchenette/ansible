@@ -2,42 +2,44 @@ name: CI
 
 on:
   push:
-    branches: [ main ]
+    branches: [ '**' ]
   pull_request:
-    branches: [ main ]
-
+    branches: [ '**' ]
   workflow_dispatch:
+  schedule:
+    - cron: '0 0 1 * *' # Run at midnight on the first of every month
 
 jobs:
   lint:
     if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     steps:
-      - name: Check out the repository
-        uses: actions/checkout@v2
+      - name: check out the repository
+        uses: actions/checkout@v4
 
-      - name: Lint Ansible Playbook
-        uses: ansible/ansible-lint-action@master
+      - name: install
+        run: ansible-galaxy collection install -r reqs/requirements.yml --force
+
+      - name: lint Ansible Playbook
+        uses: ansible/ansible-lint@v24
         with:
-          targets: main.yml
-          override-deps: |
-            ansible-lint==5.3.2
+          args: "--exclude .github/ reqs/"
 
   deploy:
     environment: Azure
     runs-on: ubuntu-latest
     steps:
-      - name: Ensure Ansible is installed
-        run: ansible --version
-
       - name: Check out the repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Instantiate Ansible 'hosts' file
-        run: sudo install -D hosts /etc/ansible/hosts
+        run: sudo install -D inventories/hosts /etc/ansible/hosts
+
+      - name: install
+        run: ansible-galaxy collection install -r reqs/requirements.yml --force
 
       - name: Run Ansible playbook
-        run: ansible-playbook main.yml
+        run: ansible-playbook playbooks/azure.vnet.yml
         env:
           AZURE_CLIENT_ID: ${{ secrets.CLIENT_ID }}
           AZURE_SECRET: ${{ secrets.CLIENT_SECRET }}
