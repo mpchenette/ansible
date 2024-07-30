@@ -16,8 +16,8 @@ jobs:
       - name: check out the repository
         uses: actions/checkout@v4
 
-      # - name: install
-      #   run: ansible-galaxy collection install -r reqs/requirements.yml --force
+      - name: install
+        run: ansible-galaxy collection install -r reqs/requirements.yml --force
 
       - name: install 2
         run: ansible-galaxy collection install azure.azcollection --force
@@ -38,6 +38,9 @@ jobs:
 
       - name: Instantiate Ansible 'hosts' file
         run: sudo install -D inventories/hosts /etc/ansible/hosts
+
+      - name: install
+        run: ansible-galaxy collection install -r reqs/requirements.yml --force
 
       - name: install 2
         run: ansible-galaxy collection install azure.azcollection --force
