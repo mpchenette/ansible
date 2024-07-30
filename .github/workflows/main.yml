@@ -5,7 +5,6 @@ on:
     branches: [ '**' ]
   pull_request:
     branches: [ '**' ]
-
   workflow_dispatch:
 
 jobs:
@@ -38,7 +37,7 @@ jobs:
         run: ansible-galaxy collection install -r reqs/requirements.yml --force
 
       - name: Run Ansible playbook
-        run: ansible-playbook playbooks/azure.vnet.yml #debug.yml
+        run: ansible-playbook playbooks/azure.vnet.yml
         env:
           AZURE_CLIENT_ID: ${{ secrets.CLIENT_ID }}
           AZURE_SECRET: ${{ secrets.CLIENT_SECRET }}
