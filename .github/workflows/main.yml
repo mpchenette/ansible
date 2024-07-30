@@ -19,6 +19,11 @@ jobs:
       - name: install
         run: ansible-galaxy collection install -r reqs/requirements.yml --force
 
+      - name: install 2
+        run: ansible-galaxy collection install azure.azcollection --force
+
+      - run: pip3 install -r ~/.ansible/collections/ansible_collections/azure/azcollection/requirements.txt
+
       - name: lint Ansible Playbook
         uses: ansible/ansible-lint@v24
         with:
