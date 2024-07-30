@@ -44,7 +44,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Instantiate Ansible 'hosts' file
-        run: sudo install -D hosts /etc/ansible/hosts
+        run: sudo install -D inventories/hosts /etc/ansible/hosts
 
       - name: Run Ansible playbook
         run: ansible-playbook playbook/debug.yml

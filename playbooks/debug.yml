@@ -1,4 +1,5 @@
-- hosts: localhost
+- name: debug playbook
+  hosts: localhost
   tasks:
     - name: Ensure the message is echoed
       ansible.builtin.debug:
