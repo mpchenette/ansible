@@ -32,5 +32,5 @@ jobs:
       #   run: sudo install -D inventories/hosts /etc/ansible/hosts
 
       - name: Run Ansible playbook
-        run: ansible-playbook playbooks/debug.yml
+        run: ansible-playbook playbooks/azure.vnet.yml #debug.yml
 
