@@ -13,15 +13,6 @@ jobs:
     # if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     steps:
-      # - name: Ensure Ansible is installed
-      #   run: ansible --version
-
-      # - name: Check installed Collections
-      #   run: ansible-galaxy collection list
-
-      # - name: list azure.azcollection
-      #   run: ansible-galaxy collection list azure.azcollection
-
       - name: check out the repository
         uses: actions/checkout@v4
 
@@ -34,17 +25,11 @@ jobs:
     environment: Azure
     runs-on: ubuntu-latest
     steps:
-      # - name: Ensure Ansible is installed
-      #   run: ansible --version
-
-      # - name: list azure.azcollection
-      #   run: ansible-galaxy collection list azure.azcollection
-
       - name: Check out the repository
         uses: actions/checkout@v4
 
-      - name: Instantiate Ansible 'hosts' file
-        run: sudo install -D inventories/hosts /etc/ansible/hosts
+      # - name: Instantiate Ansible 'hosts' file
+      #   run: sudo install -D inventories/hosts /etc/ansible/hosts
 
       - name: Run Ansible playbook
         run: ansible-playbook playbooks/debug.yml
