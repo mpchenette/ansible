@@ -1,4 +1,4 @@
-- name: debug playbook
+- name: Debug playbook
   hosts: localhost
   tasks:
     - name: Ensure the message is echoed

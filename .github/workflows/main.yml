@@ -47,5 +47,5 @@ jobs:
         run: sudo install -D inventories/hosts /etc/ansible/hosts
 
       - name: Run Ansible playbook
-        run: ansible-playbook playbook/debug.yml
+        run: ansible-playbook playbooks/debug.yml
 
