@@ -1,3 +1,4 @@
 .vscode
 .venv
 
+ansible.cfg
