@@ -15,3 +15,5 @@ collections:
     version: '>=2.1.0'
   - name: kubernetes.core
     version: '>=2.2.3'
+  - name: azure.azcollection
+    version: '>=2.6.0'
