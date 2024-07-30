@@ -17,13 +17,14 @@ jobs:
       - name: check out the repository
         uses: actions/checkout@v4
 
-      - name: install
-        run: ansible-galaxy collection install -r reqs/requirements.yml --force
+      # - name: install
+      #   run: ansible-galaxy install -r reqs/requirements.yml --force
 
       - name: lint Ansible Playbook
         uses: ansible/ansible-lint@v24
         with:
-          args: "--exclude .github/ reqs/"
+          args: "playbooks/"
+          requirements_file: requirements.yml
 
   deploy:
     environment: Azure
