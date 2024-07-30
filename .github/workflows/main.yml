@@ -13,11 +13,14 @@ jobs:
     # if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     steps:
-      # - name: Ensure Ansible is installed
-      #   run: ansible --version
+      - name: Ensure Ansible is installed
+        run: ansible --version
 
-      # - name: Check installed Collections
-      #   run: ansible-galaxy collection list
+      - name: Check installed Collections
+        run: ansible-galaxy collection list
+
+      - name: list azure.azcollection
+        run: ansible-galaxy collection list azure.azcollection
 
       - name: check out the repository
         uses: actions/checkout@v4
