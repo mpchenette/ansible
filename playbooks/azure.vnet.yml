@@ -1,0 +1,14 @@
+- name: Deploy a default VNet in Azure
+  hosts: localhost
+  tasks:
+    - name: Create a resource group
+      azure.azcollection.azure_rm_resourcegroup:
+        name: myResourceGroup
+        location: eastus
+
+    - name: Create a virtual network
+      azure.azcollection.azure_rm_virtualnetwork:
+        resource_group: myResourceGroup
+        name: myVNet
+        address_prefixes: "10.0.0.0/16"
+        location: eastus
