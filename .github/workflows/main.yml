@@ -19,7 +19,7 @@ jobs:
       - name: lint Ansible Playbook
         uses: ansible/ansible-lint@v24
         with:
-          args: "--exclude .github/"
+          args: "--exclude .github/ reqs/"
 
   deploy:
     environment: Azure
@@ -28,9 +28,14 @@ jobs:
       - name: Check out the repository
         uses: actions/checkout@v4
 
-      # - name: Instantiate Ansible 'hosts' file
-      #   run: sudo install -D inventories/hosts /etc/ansible/hosts
+      - name: Instantiate Ansible 'hosts' file
+        run: sudo install -D inventories/hosts /etc/ansible/hosts
 
       - name: Run Ansible playbook
         run: ansible-playbook playbooks/azure.vnet.yml #debug.yml
+        env:
+          AZURE_CLIENT_ID: ${{ secrets.CLIENT_ID }}
+          AZURE_SECRET: ${{ secrets.CLIENT_SECRET }}
+          AZURE_SUBSCRIPTION_ID: ${{ secrets.SUBSCRIPTION_ID }}
+          AZURE_TENANT: ${{ secrets.TENANT_ID }}
 
