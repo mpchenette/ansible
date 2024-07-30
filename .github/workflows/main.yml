@@ -19,9 +19,6 @@ jobs:
       - name: install
         run: ansible-galaxy collection install -r reqs/requirements.yml --force
 
-      # - name: install 2
-      #   run: ansible-galaxy collection install azure.azcollection --force
-
       - name: lint Ansible Playbook
         uses: ansible/ansible-lint@v24
         with:
@@ -39,9 +36,6 @@ jobs:
 
       - name: install
         run: ansible-galaxy collection install -r reqs/requirements.yml --force
-
-      # - name: install 2
-      #   run: ansible-galaxy collection install azure.azcollection --force
 
       - name: Run Ansible playbook
         run: ansible-playbook playbooks/azure.vnet.yml #debug.yml
