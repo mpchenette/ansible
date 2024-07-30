@@ -11,7 +11,7 @@ on:
 
 jobs:
   lint:
-    if: github.ref == 'refs/heads/main'
+    # if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     steps:
       - name: check out the repository
