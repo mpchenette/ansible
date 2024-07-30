@@ -8,3 +8,11 @@ Directory Structure: https://docs.ansible.com/ansible/latest/tips_tricks/sample_
 ## To-Do
 - OIDC?
 - 
+
+### For Me
+create a ansible.cfg file with
+```
+[defaults]
+interpreter_python = /opt/homebrew/bin/python3
+```
+if you are getting linting issues

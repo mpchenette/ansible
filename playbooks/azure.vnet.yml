@@ -1,14 +1,9 @@
-- name: Deploy a default VNet in Azure
+- name: Deploy a vNet in Azure
   hosts: localhost
   tasks:
-    # - name: Install collection
-    #   community.general.ansible_galaxy_install:
-    #     type: collection
-    #     name: azure.azcollection
-
-    # - name: Install Azure Requirements using pip
-    #   ansible.builtin.pip:
-    #     requirements: ~/.ansible/collections/ansible_collections/azure/azcollection/requirements.txt
+    - name: Install Azure Requirements using pip
+      ansible.builtin.pip:
+        requirements: ~/.ansible/collections/ansible_collections/azure/azcollection/requirements.txt
 
     - name: Create a resource group
       azure.azcollection.azure_rm_resourcegroup:
