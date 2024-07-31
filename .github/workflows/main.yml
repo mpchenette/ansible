@@ -18,7 +18,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: lint Ansible Playbook
-        uses: ansible/ansible-lint@v24.7.0
+        uses: ansible/ansible-lint@v24
         with:
           args: "playbooks/" # not an arg, but lintables are after the args and those are the files we want to target https://ansible.readthedocs.io/projects/lint/usage/#using-commands
           requirements_file: requirements.yml
