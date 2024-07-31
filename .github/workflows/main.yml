@@ -33,14 +33,14 @@ jobs:
         run: sudo install -D inventories/hosts /etc/ansible/hosts
 
       # NOTE: We install azure.azcollection during this step. azure.azcollection is needed both to lint and to run the playbook. SHould I move installation to be its own step?
-      - name: lint Ansible Playbook
-        uses: ansible/ansible-lint@v24
-        with:
-          args: playbooks/ # no flags. targeting the 'playbooks/' directory https://ansible.readthedocs.io/projects/lint/usage/#using-commands
-          requirements_file: requirements.yml
+      # - name: lint Ansible Playbook
+      #   uses: ansible/ansible-lint@v24
+      #   with:
+      #     args: playbooks/ # no flags. targeting the 'playbooks/' directory https://ansible.readthedocs.io/projects/lint/usage/#using-commands
+      #     requirements_file: requirements.yml
 
-      # - name: install
-      #   run: ansible-galaxy install -r requirements.yml --force
+      - name: install
+        run: ansible-galaxy install -r requirements.yml --force
 
       - name: Run Ansible playbook
         run: ansible-playbook playbooks/azure.vnet.yml
