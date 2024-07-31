@@ -17,13 +17,10 @@ jobs:
       - name: check out the repository
         uses: actions/checkout@v4
 
-      # - name: install
-      #   run: ansible-galaxy install -r reqs/requirements.yml --force
-
       - name: lint Ansible Playbook
         uses: ansible/ansible-lint@v24
         with:
-          args: "playbooks/"
+          args: "playbooks/" # not an arg, but lintables are after the args and those are the files we want to target https://ansible.readthedocs.io/projects/lint/usage/#using-commands
           requirements_file: requirements.yml
 
   deploy:
@@ -37,7 +34,7 @@ jobs:
         run: sudo install -D inventories/hosts /etc/ansible/hosts
 
       - name: install
-        run: ansible-galaxy collection install -r reqs/requirements.yml --force
+        run: ansible-galaxy install -r requirements.yml
 
       - name: Run Ansible playbook
         run: ansible-playbook playbooks/azure.vnet.yml
