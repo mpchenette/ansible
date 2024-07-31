@@ -21,7 +21,7 @@ jobs:
         run: sudo install -D inventories/hosts /etc/ansible/hosts
 
       - name: Install 'azure.azcollection'
-        run: ansible-galaxy install azure.azcollection --force
+        run: ansible-galaxy collection install azure.azcollection --force
 
       - name: lint Ansible Playbook
         uses: ansible/ansible-lint@v24
