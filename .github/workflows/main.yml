@@ -34,7 +34,7 @@ jobs:
         run: sudo install -D inventories/hosts /etc/ansible/hosts
 
       - name: install
-        run: ansible-galaxy install -r requirements.yml
+        run: ansible-galaxy install -r requirements.yml --force
 
       - name: Run Ansible playbook
         run: ansible-playbook playbooks/azure.vnet.yml
