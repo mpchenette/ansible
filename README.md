@@ -11,6 +11,13 @@ This repo is inteded to serve as an example of how to use Ansible when leveragin
 1. we structure our directory according to ansible docs
    - https://docs.ansible.com/ansible/latest/tips_tricks/sample_setup.html#alternative-directory-layout
 
+### Lesser Decisions
+1. I included the following host_vars in the inventory file to eliminate 2 separate warnings during runtime
+   - ansible_connection=local
+   - ansible_python_interpreter=auto_silent
+      - https://docs.ansible.com/ansible-core/2.17/reference_appendices/interpreter_discovery.html
+
+
 ## To-Do
 - OIDC?
 - 
